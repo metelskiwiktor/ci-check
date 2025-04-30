@@ -4,17 +4,20 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(  "Hello world!"  );
+        System.out.println("Hello world!"  );
         String a = "as";
 
-        if (a.equals("as")  ) {
+        if (a.equals("as"))
+        {
 
 
-                 System.out.println("as");
+                System.out.println("as");
         } else {
-System.out.println("not as");
+            System.out.println("not as");
         }
 
         String e;
     }
+
+
 }
