@@ -58,6 +58,26 @@
                   value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
     </module>
 
+    <!-- 1) No blank line immediately after an opening '{' -->
+    <module name="RegexpMultiline">
+        <!-- match “{” then end-of-line, then a blank line -->
+        <property name="format" value="\{\s*\r?\n\s*\r?\n"/>
+        <property name="message" value="Unnecessary blank line after '{'"/>
+        <property name="matchAcrossLines" value="true"/>
+        <!-- only check Java sources -->
+        <property name="fileExtensions" value="java"/>
+    </module>
+
+    <!-- 2) No blank line immediately before a closing '}' -->
+    <module name="RegexpMultiline">
+        <!-- match a blank line then ‘}’ on the next non-blank line -->
+        <property name="format" value="\r?\n\s*\r?\n\s*\}"/>
+        <property name="message" value="Unnecessary blank line before '}'"/>
+        <property name="matchAcrossLines" value="true"/>
+        <property name="fileExtensions" value="java"/>
+    </module>
+
+
     <module name="TreeWalker">
         <module name="UnusedImports"/>
 
