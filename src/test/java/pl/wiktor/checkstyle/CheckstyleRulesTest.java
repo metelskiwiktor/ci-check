@@ -23,13 +23,15 @@ class CheckstyleRulesTest {
 
     @ParameterizedTest(name = "Violation for {0}: {1}")
     @CsvSource({
-            "'src/test/resources/rules/fail/UnusedImport.java',          UnusedImports,             Unused import",
+            "'src/test/resources/rules/fail/UnusedImport.java',           UnusedImports,          Unused import",
             "'src/test/resources/rules/fail/CustomImportOrderCheck.java', CustomImportOrderCheck, Extra separation in import",
-            "'src/test/resources/rules/fail/UnusedLocalVariable.java',  UnusedLocalVariable,       Unused named local variable",
-            "'src/test/resources/rules/fail/IndentationCheck.java',     IndentationCheck,          incorrect indentation level",
-            "'src/test/resources/rules/fail/WhitespaceAround.java',      WhitespaceAround,          is not preceded with whitespace.",
-            "'src/test/resources/rules/fail/NoWhitespaceBefore.java',    NoWhitespaceBefore,        is preceded with whitespace.",
-            "'src/test/resources/rules/fail/GenericWhitespace.java',     GenericWhitespace,         is preceded with whitespace"
+            "'src/test/resources/rules/fail/UnusedLocalVariable.java',    UnusedLocalVariable,    Unused named local variable",
+            "'src/test/resources/rules/fail/IndentationCheck.java',       IndentationCheck,       incorrect indentation level",
+            "'src/test/resources/rules/fail/WhitespaceAround.java',       WhitespaceAround,       is not preceded with whitespace.",
+            "'src/test/resources/rules/fail/NoWhitespaceBefore.java',     NoWhitespaceBefore,     is preceded with whitespace.",
+            "'src/test/resources/rules/fail/GenericWhitespace.java',      GenericWhitespace,      is preceded with whitespace",
+            "'src/test/resources/rules/fail/UnnecessaryBlankLine.java',   RegexpMultilineCheck,   Unnecessary blank line",
+            "'src/test/resources/rules/fail/EmptyLineSeparatorCheck.java',EmptyLineSeparatorCheck,more than 1 empty line"
     })
     void shouldDetectOnlyOneKindOfViolation(String filePath,
                                             String checkNameFragment,
@@ -70,7 +72,8 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/success/WhitespaceAround.java'",
             "'src/test/resources/rules/success/NoWhitespaceBefore.java'",
             "'src/test/resources/rules/success/GenericWhitespace.java'",
-            "'src/test/resources/rules/success/UnnecessaryBlankLine.java'"
+            "'src/test/resources/rules/success/UnnecessaryBlankLine.java'",
+            "'src/test/resources/rules/success/EmptyLineSeparatorCheck.java'",
     })
     void shouldPassForCleanCode(String filePath) throws Exception {
         List<AuditEvent> events = runCheckstyle(filePath);
