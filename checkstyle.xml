@@ -164,7 +164,6 @@
                                    multi-block statement (4.1.3)"/>
         </module>
         <module name="OneStatementPerLine"/>
-        <module name="MultipleVariableDeclarations"/>
         <module name="ArrayTypeStyle"/>
         <module name="MissingSwitchDefault"/>
         <module name="FallThrough"/>
@@ -173,10 +172,13 @@
         <module name="EmptyLineSeparator">
             <property name="tokens"
                       value="PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
-                    STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF,
-                    COMPACT_CTOR_DEF"/>
-            <property name="allowNoEmptyLineBetweenFields" value="true"/>
+         STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF,
+         COMPACT_CTOR_DEF"/>
+            <property name="allowNoEmptyLineBetweenFields" value="false"/>
+            <property name="allowMultipleEmptyLines" value="false"/>
+            <property name="allowMultipleEmptyLinesInsideClassMembers" value="false"/>
         </module>
+
         <module name="SeparatorWrap">
             <property name="id" value="SeparatorWrapDot"/>
             <property name="tokens" value="DOT"/>
@@ -423,9 +425,10 @@
         <module name="EmptyCatchBlock">
             <property name="exceptionVariableName" value="expected"/>
         </module>
-        <module name="CommentsIndentation">
-            <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>
-        </module>
+        <!--        NIEPOTRZEBNE -->
+        <!--        <module name="CommentsIndentation">-->
+        <!--            <property name="tokens" value="SINGLE_LINE_COMMENT, BLOCK_COMMENT_BEGIN"/>-->
+        <!--        </module>-->
         <!-- https://checkstyle.org/filters/suppressionxpathfilter.html -->
         <module name="SuppressionXpathFilter">
             <property name="file" value="${org.checkstyle.google.suppressionxpathfilter.config}"
