@@ -53,7 +53,7 @@
 
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
-        <property name="max" value="100"/>
+        <property name="max" value="120"/>
         <property name="ignorePattern"
                   value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
     </module>
@@ -92,6 +92,26 @@
             <property name="ignoreComments" value="true"/>
             <property name="message" value="System.out is forbidden. Use a logger instead."/>
         </module>
+
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="SystemErrUsage"/>
+            <property name="format" value="System\s*\.\s*err"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="System.err is forbidden. Use a logger instead."/>
+        </module>
+
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="SingleLineComments"/>
+            <property name="format" value="^\s*//(?!\s*CHECKSTYLE)"/>
+            <property name="message" value="Single-line comments are forbidden. Use Javadoc instead."/>
+            <property name="ignoreComments" value="false"/>
+        </module>
+
+        <module name="SuppressionXpathSingleFilter">
+            <property name="checks" value="SingleLineComments"/>
+            <property name="query" value="//COMPILATION_UNIT[./PACKAGE_DEF/DOT/IDENT[@text='test' or @text='tests']]"/>
+        </module>
+
         <module name="UnusedImports"/>
 
         <module name="UnusedLocalVariable"/>

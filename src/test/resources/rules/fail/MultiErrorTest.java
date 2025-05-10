@@ -17,5 +17,8 @@ public class MultiErrorTest {
         }
 
 
+        if (used)
+            used = "tes2";
     }
+
 }

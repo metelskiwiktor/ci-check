@@ -36,6 +36,10 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/fail/LocalVariableName.java',      LocalVariableName,       must match pattern",
             "'src/test/resources/rules/fail/ConstantName.java',           ConstantName,            must match pattern",
             "'src/test/resources/rules/fail/SystemOutUsage.java',         RegexpSinglelineJava,    System.out is forbidden",
+            "'src/test/resources/rules/fail/SingleLineCommentCheck.java', RegexpSinglelineJava,    Single-line comments are forbidden",
+            "'src/test/resources/rules/fail/LineLengthCheck.java',        LineLength,              Line is longer than 120 characters",
+            "'src/test/resources/rules/fail/NeedBracesCheck.java',        NeedBraces,              construct must use '{}'",
+            "'src/test/resources/rules/fail/SystemErrUsage.java',         RegexpSinglelineJava,    System.err is forbidden",
     })
     void shouldDetectOnlyOneKindOfViolation(String filePath,
                                             String checkNameFragment,
@@ -88,6 +92,10 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/success/LocalVariableName.java'",
             "'src/test/resources/rules/success/ConstantName.java'",
             "'src/test/resources/rules/success/SystemOutUsage.java'",
+            "'src/test/resources/rules/success/SingleLineCommentCheck.java'",
+            "'src/test/resources/rules/success/LineLengthCheck.java'",
+            "'src/test/resources/rules/success/NeedBracesCheck.java'",
+            "'src/test/resources/rules/success/SystemErrUsage.java'",
     })
     void shouldPassForCleanCode(String filePath) throws Exception {
         List<AuditEvent> events = runCheckstyle(filePath);
