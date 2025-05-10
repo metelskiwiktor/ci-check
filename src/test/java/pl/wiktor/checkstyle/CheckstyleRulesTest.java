@@ -126,11 +126,17 @@ class CheckstyleRulesTest {
                 "Unused named local variable",
                 "incorrect indentation level",
                 "is not preceded with whitespace.",
-                "is not followed by whitespace.",
+                "is not followed by whitespace",
                 "is preceded with whitespace.",
                 "GenericWhitespace",
                 "Unnecessary blank line",
-                "more than 1 empty line"
+                "more than 1 empty line",
+                "must match pattern",
+                "System.out is forbidden",
+                "System.err is forbidden",
+                "Single-line comments are forbidden",
+                "Line is longer than 120 characters",
+                "construct must use '{}'"
         );
 
         List<String> missing = expectedFragments.stream()
