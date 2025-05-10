@@ -21,20 +21,20 @@ class CheckstyleRulesTest {
 
     @ParameterizedTest(name = "Violation for {0}: {1}")
     @CsvSource({
-            "'src/test/resources/rules/fail/UnusedImport.java',           UnusedImports,          Unused import",
-            "'src/test/resources/rules/fail/CustomImportOrderCheck.java', CustomImportOrderCheck, Extra separation in import",
-            "'src/test/resources/rules/fail/UnusedLocalVariable.java',    UnusedLocalVariable,    Unused named local variable",
-            "'src/test/resources/rules/fail/IndentationCheck.java',       IndentationCheck,       incorrect indentation level",
-            "'src/test/resources/rules/fail/WhitespaceAround.java',       WhitespaceAround,       is not preceded with whitespace.",
-            "'src/test/resources/rules/fail/WhitespaceAroundCheck.java',  WhitespaceAroundCheck,  is not followed by whitespace",
-            "'src/test/resources/rules/fail/NoWhitespaceBefore.java',     NoWhitespaceBefore,     is preceded with whitespace.",
-            "'src/test/resources/rules/fail/GenericWhitespace.java',      GenericWhitespace,      GenericWhitespace",
-            "'src/test/resources/rules/fail/UnnecessaryBlankLine.java',   RegexpMultilineCheck,   Unnecessary blank line",
-            "'src/test/resources/rules/fail/EmptyLineSeparatorCheck.java',EmptyLineSeparatorCheck,more than 1 empty line",
-            "'src/test/resources/rules/fail/BadClassName.java',        TypeName,        must match pattern",
-            "'src/test/resources/rules/fail/BadMethodName.java',       MethodName,      must match pattern",
-            "'src/test/resources/rules/fail/BadVariableName.java',     LocalVariableName,must match pattern",
-            "'src/test/resources/rules/fail/BadConstantName.java',     ConstantName,    must match pattern",
+            "'src/test/resources/rules/fail/UnusedImport.java',           UnusedImports,           Unused import",
+            "'src/test/resources/rules/fail/CustomImportOrderCheck.java', CustomImportOrderCheck,  Extra separation in import",
+            "'src/test/resources/rules/fail/UnusedLocalVariable.java',    UnusedLocalVariable,     Unused named local variable",
+            "'src/test/resources/rules/fail/IndentationCheck.java',       IndentationCheck,        incorrect indentation level",
+            "'src/test/resources/rules/fail/WhitespaceAround.java',       WhitespaceAround,        is not preceded with whitespace.",
+            "'src/test/resources/rules/fail/WhitespaceAroundCheck.java',  WhitespaceAroundCheck,   is not followed by whitespace",
+            "'src/test/resources/rules/fail/NoWhitespaceBefore.java',     NoWhitespaceBefore,      is preceded with whitespace.",
+            "'src/test/resources/rules/fail/GenericWhitespace.java',      GenericWhitespace,       GenericWhitespace",
+            "'src/test/resources/rules/fail/UnnecessaryBlankLine.java',   RegexpMultilineCheck,    Unnecessary blank line",
+            "'src/test/resources/rules/fail/EmptyLineSeparatorCheck.java',EmptyLineSeparatorCheck, more than 1 empty line",
+            "'src/test/resources/rules/fail/TypeName.java',               TypeName,                must match pattern",
+            "'src/test/resources/rules/fail/MethodName.java',             MethodName,              must match pattern",
+            "'src/test/resources/rules/fail/LocalVariableName.java',      LocalVariableName,       must match pattern",
+            "'src/test/resources/rules/fail/ConstantName.java',           ConstantName,            must match pattern",
     })
     void shouldDetectOnlyOneKindOfViolation(String filePath,
                                             String checkNameFragment,
@@ -82,6 +82,10 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/success/GenericWhitespace.java'",
             "'src/test/resources/rules/success/UnnecessaryBlankLine.java'",
             "'src/test/resources/rules/success/EmptyLineSeparatorCheck.java'",
+            "'src/test/resources/rules/success/TypeName.java'",
+            "'src/test/resources/rules/success/MethodName.java'",
+            "'src/test/resources/rules/success/LocalVariableName.java'",
+            "'src/test/resources/rules/success/ConstantName.java'",
     })
     void shouldPassForCleanCode(String filePath) throws Exception {
         List<AuditEvent> events = runCheckstyle(filePath);

@@ -7,7 +7,10 @@ Potrzebne dyrektywy checkstyle:
 
 //teraz to
 //dodac WhitespaceAfterCheck, WhitespaceAroundCheck ('if' is not followed by whitespace)
-6) lowerCamelCase dla zmiennych, Single Underscore (UPPER CASE) dla static
+6) lowerCamelCase dla zmiennych, Underscore (UPPER CASE) dla static
+   lowerCamelCase dla variable/methods
+   UpperCamelCase dla classes/interfaces/annotations/enums/record
+   Screaming Snake Case dla contants
 7) Pole musi być final jeśli nie zostaje przekazywana mu nowa referencja
 8) Brak sout, wskazówka: używaj loggera
 9) Brak komentarzy single-line (oprócz tych testowych), wskazówka: używaj javadoc

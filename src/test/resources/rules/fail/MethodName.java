@@ -1,5 +1,5 @@
 package rules.fail;
 
-public class BadMethodName {
+public class MethodName {
     public void BadMethod() {}
 }

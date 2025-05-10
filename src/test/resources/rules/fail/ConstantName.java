@@ -1,5 +1,5 @@
 package rules.fail;
 
-public class BadConstantName {
+public class ConstantName {
     public static final int not_screaming_snake_case = 10;
 }
