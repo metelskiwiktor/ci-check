@@ -1,7 +1,9 @@
 package rules.fail;
 
+import java.util.stream.Stream;
+
 public class NoWhitespaceBefore {
     public void method() {
-        System .out.println("wrong");
+        Stream .builder().build();
     }
 }

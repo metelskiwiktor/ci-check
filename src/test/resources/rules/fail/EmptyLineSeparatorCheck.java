@@ -2,11 +2,11 @@ package rules.fail;
 
 public class EmptyLineSeparatorCheck {
     public void method() {
-        System.out.println("Hello World");
+        String hw = "Hello World";
 
-        System.out.println("Hello World");
+        hw = "Hello World2";
 
 
-        System.out.println("Hello World");
+        hw.lines();
     }
 }

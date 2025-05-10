@@ -12,6 +12,8 @@ public class MultiErrorTest {
 
         if(used .contains("")){
         System.out.println("test");
+        } else {
+            used = "test";
         }
 
 

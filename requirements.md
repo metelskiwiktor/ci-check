@@ -11,7 +11,7 @@ Potrzebne dyrektywy checkstyle:
    lowerCamelCase dla variable/methods
    UpperCamelCase dla classes/interfaces/annotations/enums/record
    Screaming Snake Case dla contants
-7) Pole musi być final jeśli nie zostaje przekazywana mu nowa referencja
+7) Pole musi być final jeśli nie zostaje przekazywana mu nowa referencja //poki co to omijam, trzeba by bylo swojego checkera zrobic
 8) Brak sout, wskazówka: używaj loggera
 9) Brak komentarzy single-line (oprócz tych testowych), wskazówka: używaj javadoc
 10) Limit kolumny: 120 znaków

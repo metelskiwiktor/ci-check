@@ -5,6 +5,6 @@ import java.util.List;
 public class GenericWhitespace {
     public void method() {
         List<String> list = null;
-        System.out.println(list);
+        list.stream();
     }
 }

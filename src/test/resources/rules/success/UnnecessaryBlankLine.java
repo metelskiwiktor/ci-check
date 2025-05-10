@@ -6,13 +6,12 @@ import java.util.List;
 public class UnnecessaryBlankLine {
     public void printDate() {
         Date date = new Date();
-        System.out.println(date);
+        date.hashCode();
 
         List<String> list = null;
-        System.out.println(list);
+        list.stream();
     }
 
     public void anotherMethod() {
-        System.out.println("This is another method");
     }
 }

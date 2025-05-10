@@ -74,6 +74,24 @@
     </module>
 
     <module name="TreeWalker">
+        <module name="SuppressionCommentFilter">
+            <property name="offCommentFormat" value="CHECKSTYLE.OFF\: ([\w\|]+)"/>
+            <property name="onCommentFormat" value="CHECKSTYLE.ON\: ([\w\|]+)"/>
+            <property name="checkFormat" value="$1"/>
+        </module>
+        <module name="SuppressWithNearbyCommentFilter">
+            <property name="commentFormat" value="CHECKSTYLE.SUPPRESS\: ([\w\|]+)"/>
+            <!-- $1 refers to the first match group in the regex defined in commentFormat -->
+            <property name="checkFormat" value="$1"/>
+            <!-- The check is suppressed in the next line of code after the comment -->
+            <property name="influenceFormat" value="1"/>
+        </module>
+        <module name="RegexpSinglelineJava">
+            <property name="id" value="SystemOutUsage"/>
+            <property name="format" value="System\s*\.\s*out"/>
+            <property name="ignoreComments" value="true"/>
+            <property name="message" value="System.out is forbidden. Use a logger instead."/>
+        </module>
         <module name="UnusedImports"/>
 
         <module name="UnusedLocalVariable"/>
@@ -134,13 +152,13 @@
             <property name="query" value="//RCURLY[parent::SLIST[count(./*)=1]
                                      or preceding-sibling::*[last()][self::LCURLY]]"/>
         </module>
-<!--        <module name="WhitespaceAfter">-->
-<!--            <property name="tokens"-->
-<!--                      value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,-->
-<!--                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,-->
-<!--                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,-->
-<!--                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN"/>-->
-<!--        </module>-->
+        <!--        <module name="WhitespaceAfter">-->
+        <!--            <property name="tokens"-->
+        <!--                      value="COMMA, SEMI, TYPECAST, LITERAL_IF, LITERAL_ELSE, LITERAL_RETURN,-->
+        <!--                    LITERAL_WHILE, LITERAL_DO, LITERAL_FOR, LITERAL_FINALLY, DO_WHILE, ELLIPSIS,-->
+        <!--                    LITERAL_SWITCH, LITERAL_SYNCHRONIZED, LITERAL_TRY, LITERAL_CATCH, LAMBDA,-->
+        <!--                    LITERAL_YIELD, LITERAL_CASE, LITERAL_WHEN"/>-->
+        <!--        </module>-->
         <module name="WhitespaceAround">
             <property name="allowEmptyConstructors" value="true"/>
             <property name="allowEmptyLambdas" value="true"/>
@@ -186,7 +204,7 @@
         <module name="EmptyLineSeparator">
             <property name="tokens"
                       value="PACKAGE_DEF, IMPORT, STATIC_IMPORT, CLASS_DEF, INTERFACE_DEF, ENUM_DEF,
-         STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, VARIABLE_DEF, RECORD_DEF,
+         STATIC_INIT, INSTANCE_INIT, METHOD_DEF, CTOR_DEF, RECORD_DEF,
          COMPACT_CTOR_DEF"/>
             <property name="allowNoEmptyLineBetweenFields" value="false"/>
             <property name="allowMultipleEmptyLines" value="false"/>
@@ -339,9 +357,9 @@
         <module name="ConstructorsDeclarationGrouping"/>
         <module name="VariableDeclarationUsageDistance"/>
         <module name="CustomImportOrder">
-<!--            <property name="sortImportsInGroupAlphabetically" value="true"/>-->
+            <!--            <property name="sortImportsInGroupAlphabetically" value="true"/>-->
             <property name="separateLineBetweenGroups" value="true"/>
-<!--            <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>-->
+            <!--            <property name="customImportOrderRules" value="STATIC###THIRD_PARTY_PACKAGE"/>-->
             <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
         </module>
         <module name="MethodParamPad">

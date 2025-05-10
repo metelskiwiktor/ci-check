@@ -2,10 +2,10 @@ package rules.success;
 
 public class EmptyLineSeparatorCheck {
     public void method() {
-        System.out.println("Hello World");
+        String hw = "Hello World";
 
-        System.out.println("Hello World");
+        hw.lines();
 
-        System.out.println("Hello World");
+        hw.isEmpty();
     }
 }

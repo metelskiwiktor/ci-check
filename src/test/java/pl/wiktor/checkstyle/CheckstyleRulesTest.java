@@ -35,6 +35,7 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/fail/MethodName.java',             MethodName,              must match pattern",
             "'src/test/resources/rules/fail/LocalVariableName.java',      LocalVariableName,       must match pattern",
             "'src/test/resources/rules/fail/ConstantName.java',           ConstantName,            must match pattern",
+            "'src/test/resources/rules/fail/SystemOutUsage.java',         RegexpSinglelineJava,    System.out is forbidden",
     })
     void shouldDetectOnlyOneKindOfViolation(String filePath,
                                             String checkNameFragment,
@@ -86,6 +87,7 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/success/MethodName.java'",
             "'src/test/resources/rules/success/LocalVariableName.java'",
             "'src/test/resources/rules/success/ConstantName.java'",
+            "'src/test/resources/rules/success/SystemOutUsage.java'",
     })
     void shouldPassForCleanCode(String filePath) throws Exception {
         List<AuditEvent> events = runCheckstyle(filePath);
