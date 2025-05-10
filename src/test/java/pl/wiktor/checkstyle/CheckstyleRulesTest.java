@@ -5,16 +5,14 @@ import com.puppycrawl.tools.checkstyle.api.Configuration;
 import com.puppycrawl.tools.checkstyle.Checker;
 import com.puppycrawl.tools.checkstyle.ConfigurationLoader;
 import com.puppycrawl.tools.checkstyle.PropertiesExpander;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.xml.sax.InputSource;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -28,25 +26,36 @@ class CheckstyleRulesTest {
             "'src/test/resources/rules/fail/UnusedLocalVariable.java',    UnusedLocalVariable,    Unused named local variable",
             "'src/test/resources/rules/fail/IndentationCheck.java',       IndentationCheck,       incorrect indentation level",
             "'src/test/resources/rules/fail/WhitespaceAround.java',       WhitespaceAround,       is not preceded with whitespace.",
+            "'src/test/resources/rules/fail/WhitespaceAroundCheck.java',  WhitespaceAroundCheck,  is not followed by whitespace",
             "'src/test/resources/rules/fail/NoWhitespaceBefore.java',     NoWhitespaceBefore,     is preceded with whitespace.",
-            "'src/test/resources/rules/fail/GenericWhitespace.java',      GenericWhitespace,      is preceded with whitespace",
+            "'src/test/resources/rules/fail/GenericWhitespace.java',      GenericWhitespace,      GenericWhitespace",
             "'src/test/resources/rules/fail/UnnecessaryBlankLine.java',   RegexpMultilineCheck,   Unnecessary blank line",
-            "'src/test/resources/rules/fail/EmptyLineSeparatorCheck.java',EmptyLineSeparatorCheck,more than 1 empty line"
+            "'src/test/resources/rules/fail/EmptyLineSeparatorCheck.java',EmptyLineSeparatorCheck,more than 1 empty line",
+            "'src/test/resources/rules/fail/BadClassName.java',        TypeName,        must match pattern",
+            "'src/test/resources/rules/fail/BadMethodName.java',       MethodName,      must match pattern",
+            "'src/test/resources/rules/fail/BadVariableName.java',     LocalVariableName,must match pattern",
+            "'src/test/resources/rules/fail/BadConstantName.java',     ConstantName,    must match pattern",
     })
     void shouldDetectOnlyOneKindOfViolation(String filePath,
                                             String checkNameFragment,
                                             String messageFragment) throws Exception {
         List<AuditEvent> events = runCheckstyle(filePath);
 
-        // 1) Co najmniej jeden błąd
         assertFalse(events.isEmpty(),
                 () -> "Expected at least one violation for " + filePath + ", but got none.");
 
-        // 2) Wszystkie błędy są z tego samego checku
         List<String> distinctSources = events.stream()
                 .map(AuditEvent::getSourceName)
                 .distinct()
                 .toList();
+
+        if (distinctSources.size() != 1) {
+            System.err.println("Detected multiple violation sources:");
+            distinctSources.forEach(s -> System.err.println(" - " + s));
+
+            System.err.println("Full violation messages:");
+            events.forEach(e -> System.err.printf("[%s] %s%n", e.getSourceName(), e.getMessage()));
+        }
 
         assertEquals(1, distinctSources.size(),
                 () -> "Expected only one kind of violation, but got multiple sources: " + distinctSources);
@@ -55,7 +64,6 @@ class CheckstyleRulesTest {
                 () -> String.format("Expected check '%s' but got '%s'",
                         checkNameFragment, distinctSources.getFirst()));
 
-        // 3) Każdy komunikat zawiera oczekiwany fragment
         events.forEach(e ->
                 assertTrue(e.getMessage().toLowerCase().contains(messageFragment.toLowerCase()),
                         () -> String.format("Violation message should contain '%s', but got '%s'",
@@ -84,6 +92,51 @@ class CheckstyleRulesTest {
                                         e.getLine(), e.getColumn(), e.getMessage(), e.getSourceName()))
                                 .collect(Collectors.joining("\n"))
         );
+    }
+
+    @Test
+    void shouldReportAllViolationsInSingleFile() throws Exception {
+        String filePath = "src/test/resources/rules/fail/MultiErrorTest.java";
+        List<AuditEvent> events = runCheckstyle(filePath);
+
+        assertFalse(events.isEmpty(),
+                () -> "Expected violations in " + filePath + " but found none.");
+
+        List<String> messages = events.stream()
+                .map(AuditEvent::getMessage)
+                .toList();
+
+        List<String> expectedFragments = List.of(
+                "Unused import",
+                "Extra separation in import",
+                "Unused named local variable",
+                "incorrect indentation level",
+                "is not preceded with whitespace.",
+                "is not followed by whitespace.",
+                "is preceded with whitespace.",
+                "GenericWhitespace",
+                "Unnecessary blank line",
+                "more than 1 empty line"
+        );
+
+        List<String> missing = expectedFragments.stream()
+                .filter(fragment -> messages.stream().noneMatch(msg -> msg.contains(fragment)))
+                .toList();
+
+        assertTrue(missing.isEmpty(),
+                () -> "Missing expected violations: " + missing);
+
+        List<AuditEvent> unexpectedEvents = events.stream()
+                .filter(event -> expectedFragments.stream()
+                        .noneMatch(fragment -> event.getMessage().contains(fragment)))
+                .toList();
+
+        List<String> unexpected = unexpectedEvents.stream()
+                .map(event -> event.getSourceName() + ": " + event.getMessage())
+                .toList();
+
+        assertTrue(unexpected.isEmpty(),
+                () -> "Unexpected violations: " + unexpected);
     }
 
     private List<AuditEvent> runCheckstyle(String filePath) throws Exception {

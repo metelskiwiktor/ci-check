@@ -6,6 +6,7 @@ Potrzebne dyrektywy checkstyle:
 5) Wymagane przerwy: między metodami
 
 //teraz to
+//dodac WhitespaceAfterCheck, WhitespaceAroundCheck ('if' is not followed by whitespace)
 6) lowerCamelCase dla zmiennych, Single Underscore (UPPER CASE) dla static
 7) Pole musi być final jeśli nie zostaje przekazywana mu nowa referencja
 8) Brak sout, wskazówka: używaj loggera
