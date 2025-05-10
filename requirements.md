@@ -4,9 +4,6 @@ Potrzebne dyrektywy checkstyle:
 3) Brak niepotrzebnych whitespaces
 4) Zakazane przerwy: między importami, przed/po bloku, 2x przerwa
 5) Wymagane przerwy: między metodami
-
-//teraz to
-//dodac WhitespaceAfterCheck, WhitespaceAroundCheck ('if' is not followed by whitespace)
 6) lowerCamelCase dla zmiennych, Underscore (UPPER CASE) dla static
    lowerCamelCase dla variable/methods
    UpperCamelCase dla classes/interfaces/annotations/enums/record
@@ -18,3 +15,5 @@ Potrzebne dyrektywy checkstyle:
 11) Wymagane są klamry (np. w przypadku jednoliniowych if)
 
 Wymagane pokrycie kodu min. 80% z wykorzystaniem jacoco
+
+Dodać weryfikację, że klasy testowe mogą mieć komentarze jednoliniowe
