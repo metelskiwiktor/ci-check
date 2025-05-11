@@ -2,7 +2,7 @@ Potrzebne dyrektywy checkstyle:
 1) Niewykorzystywany import, zmienna
 2) Brak formatowania (1 tab = 4 znaki)
 3) Brak niepotrzebnych whitespaces
-4) Zakazane przerwy: między importami, przed/po bloku, 2x przerwa
+4) Zakazane przerwy: między importami (wycofuje się z pomysłu ze względu na grupy importów), przed/po bloku, 2x przerwa
 5) Wymagane przerwy: między metodami
 6) lowerCamelCase dla zmiennych, Underscore (UPPER CASE) dla static
    lowerCamelCase dla variable/methods

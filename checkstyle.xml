@@ -91,12 +91,6 @@
             <property name="tabWidth" value="4"/>
         </module>
 
-        <!-- Custom Import Order -->
-        <module name="CustomImportOrder">
-            <property name="separateLineBetweenGroups" value="true"/>
-            <property name="tokens" value="IMPORT, STATIC_IMPORT, PACKAGE_DEF"/>
-        </module>
-
         <!-- No Whitespace Before -->
         <module name="NoWhitespaceBefore">
             <property name="tokens" value="COMMA, SEMI, POST_INC, POST_DEC, DOT, LABELED_STAT, METHOD_REF"/>

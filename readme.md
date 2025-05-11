@@ -160,7 +160,6 @@ Checkstyle sprawdza między innymi:
 
 ### 6. Organizacja importów
 
-- **CustomImportOrder** - wymaga separacji między grupami importów
 - **RegexpMultiline** - wykrywa niepotrzebne puste linie między importami
 
 ## Uruchamianie testów
@@ -184,14 +183,3 @@ CI automatycznie uruchamia się przy:
 
 - Push do gałęzi `main`
 - Utworzeniu Pull Request do gałęzi `main`
-
-### Raport pokrycia kodu
-
-Projekt używa JaCoCo do mierzenia pokrycia kodu testami. Wymagane jest minimum 80% pokrycia. Raport generowany jest po
-wykonaniu:
-
-```bash
-mvn verify
-```
-
-Raport znajduje się w: `target/site/jacoco/index.html`

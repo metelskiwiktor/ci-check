@@ -22,7 +22,6 @@ class CheckstyleRulesTest {
     @ParameterizedTest(name = "Violation for {0}: {1}")
     @CsvSource({
             "'src/test/resources/rules/fail/UnusedImport.java',           UnusedImports,           Unused import",
-            "'src/test/resources/rules/fail/CustomImportOrderCheck.java', CustomImportOrderCheck,  Extra separation in import",
             "'src/test/resources/rules/fail/UnusedLocalVariable.java',    UnusedLocalVariable,     Unused named local variable",
             "'src/test/resources/rules/fail/IndentationCheck.java',       IndentationCheck,        incorrect indentation level",
             "'src/test/resources/rules/fail/WhitespaceAround.java',       WhitespaceAround,        is not preceded with whitespace.",
@@ -79,7 +78,6 @@ class CheckstyleRulesTest {
     @ParameterizedTest(name = "Clean code: {0}")
     @CsvSource({
             "'src/test/resources/rules/success/UnusedImport.java'",
-            "'src/test/resources/rules/success/CustomImportOrderCheck.java'",
             "'src/test/resources/rules/success/UnusedLocalVariable.java'",
             "'src/test/resources/rules/success/IndentationCheck.java'",
             "'src/test/resources/rules/success/WhitespaceAround.java'",
@@ -122,7 +120,6 @@ class CheckstyleRulesTest {
 
         List<String> expectedFragments = List.of(
                 "Unused import",
-                "Extra separation in import",
                 "Unused named local variable",
                 "incorrect indentation level",
                 "is not preceded with whitespace.",
