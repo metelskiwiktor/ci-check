@@ -28,7 +28,6 @@ public class MultiErrorTest {
 
         String veryLongString = "This is a very long string that exceeds the 120 character limit and should trigger a checkstyle violation for line length test";
     }
-
     public static void BadMethodName() {
         System.out.println("Bad method name");
     }

@@ -8,4 +8,9 @@ public class EmptyLineSeparatorCheck {
 
         hw.isEmpty();
     }
+
+    public void anotherMethod() {
+        String hw = "Hello World";
+        hw.lines();
+    }
 }
