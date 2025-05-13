@@ -12,7 +12,8 @@
     <module name="LineLength">
         <property name="fileExtensions" value="java"/>
         <property name="max" value="120"/>
-        <property name="ignorePattern" value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
+        <property name="ignorePattern"
+                  value="^package.*|^import.*|href\s*=\s*&quot;[^&quot;]*&quot;|http://|https://|ftp://"/>
     </module>
 
     <!-- Blank Lines After/Before Braces -->
@@ -55,10 +56,10 @@
             <property name="ignoreComments" value="false"/>
         </module>
 
-        <!-- Suppress single line comments check in test packages -->
+        <!-- Suppress Single Line Comments in Tests -->
         <module name="SuppressionXpathSingleFilter">
-            <property name="checks" value="SingleLineComments"/>
-            <property name="query" value="//COMPILATION_UNIT[./PACKAGE_DEF/DOT/IDENT[@text='test' or @text='tests']]"/>
+            <property name="id" value="SingleLineComments"/>
+            <property name="files" value=".*[\\/]src[\\/]test[\\/]java[\\/].*"/>
         </module>
 
         <!-- Unused Imports -->
