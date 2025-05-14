@@ -118,9 +118,10 @@ Maven Plugin dla Checkstyle pozwala na integrację weryfikacji stylu kodu z proc
     </executions>
 </plugin>
 ```
-
+> [!NOTE]
 > Wersja zastosowana poniżej wspiera `JDK 21`.
 
+> [!NOTE]
 > Checkstyle jest pobierany z url: `https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/checkstyle.xml`
 
 #### Uruchamianie Checkstyle z Maven:
@@ -137,6 +138,7 @@ Możesz również używać lokalnego pliku konfiguracyjnego Checkstyle z repozyt
 </configuration>
 ```
 
+> [!IMPORTANT]
 > Pobrany plik `checkstyle.xml` przechowuj w root katalogu projektu.
 
 ### 4.2 Integracja z IntelliJ IDEA
@@ -242,8 +244,10 @@ jobs:
     2. Konfiguruje Java Development Kit (JDK)
     3. Uruchamia `mvn verify`, który wykonuje kompilację, testy oraz analizy kodu (w tym Checkstyle)
 
+> [!NOTE]
 > Workflow jest uruchamiany w kontenerowym środowisku GitHub Actions.
 
+> [!IMPORTANT]
 > Pamiętaj by zapisać plik `.github/workflows/ci.yml` w swoim repozytorium.
 
 Ta konfiguracja zapewnia, że każda zmiana w kodzie przechodzi przez weryfikację jakości przed scaleniem z główną
