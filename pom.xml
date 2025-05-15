@@ -65,10 +65,11 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <configLocation>checkstyle.xml</configLocation>
+                    <configLocation>check/checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failOnViolation>true</failOnViolation>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <suppressionsLocation>check/suppressions.xml</suppressionsLocation>
                 </configuration>
                 <executions>
                     <execution>
