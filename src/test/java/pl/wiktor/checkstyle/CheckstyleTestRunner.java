@@ -16,7 +16,7 @@ import java.util.*;
  * Utility class for running Checkstyle tests.
  */
 public class CheckstyleTestRunner {
-    private static final String CONFIG_FILE = "checkstyle.xml";
+    private static final String CONFIG_FILE = "check/checkstyle.xml";
     
     /**
      * Runs Checkstyle on a single file and returns the list of audit events.

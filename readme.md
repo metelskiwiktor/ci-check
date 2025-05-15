@@ -141,6 +141,59 @@ Możesz również używać lokalnego pliku konfiguracyjnego Checkstyle z repozyt
 > [!IMPORTANT]
 > Pobrany plik `checkstyle.xml` przechowuj w root katalogu projektu.
 
+### 4.1.1 Wyłączanie wybranych reguł lokalnie (np. komentarze, System.out)
+
+Jeśli chcesz **lokalnie wyłączyć wybrane reguły** (np. `//` komentarze lub `System.out`), możesz to zrobić **bez jego modyfikowania**, tworząc plik `suppressions.xml`.
+
+#### Krok 1: Zaktualizuj `pom.xml`
+
+```xml
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-checkstyle-plugin</artifactId>
+    <version>3.6.0</version>
+    <dependencies>
+        <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.20.0</version>
+        </dependency>
+    </dependencies>
+    <configuration>
+        <configLocation>checkstyle.xml</configLocation>
+        <suppressionsLocation>suppressions.xml</suppressionsLocation>
+        <consoleOutput>true</consoleOutput>
+        <failOnViolation>true</failOnViolation>
+        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+    </configuration>
+</plugin>
+````
+
+> [!NOTE]
+> Dodano `suppressionsLocation`
+
+#### Krok 2: Stwórz `suppressions.xml`
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE suppressions PUBLIC
+    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+<suppressions>
+    <!-- Wyłącza zakaz komentarzy // -->
+    <suppress checks="RegexpSinglelineJava" id="SingleLineComments"/>
+    
+    <!-- Wyłącza zakaz System.out -->
+    <suppress checks="RegexpSinglelineJava" id="SystemOutUsage"/>
+
+    <!-- Wyłącza obowiązkowe klamry -->
+    <suppress checks="NeedBraces"/>
+</suppressions>
+```
+
+> [!IMPORTANT]
+> Jeśli dana reguła ma przypisane `id` w `checkstyle.xml`, to w `suppressions.xml` należy je wskazać w atrybucie `id`.
+
 ### 4.2 Integracja z IntelliJ IDEA
 
 Integracja Checkstyle z IntelliJ IDEA pozwala na natychmiastowe wykrywanie naruszeń podczas kodowania.
@@ -170,8 +223,9 @@ Integracja Checkstyle z IntelliJ IDEA pozwala na natychmiastowe wykrywanie narus
     - Nadaj opis
     - Kliknij `Next` a następnie `Finish`
 3. Zaznacz swoją konfigurację jako aktywną
-4. Kliknij `Apply` i `OK`
-5. Od tej chwili Intellij będzie analizować kod w czasie rzeczywistym
+4. Po prawej na górze w `Scan Scope` wybierz `Only Java sources (including tests)`
+5. Kliknij `Apply` i `OK`
+6. Od tej chwili Intellij będzie analizować kod w czasie rzeczywistym
 
 ## 5. Continuous Integration (CI)
 

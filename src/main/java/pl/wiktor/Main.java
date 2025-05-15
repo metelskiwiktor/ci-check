@@ -12,8 +12,12 @@ public class Main {
     public void test() {
         String a = "as";
 
+        //comment
         if (a.equals("as")) {
+            System.out.println("sout");
         } else {
         }
+
+        if (a.equals("ase")) return;
     }
 }
