@@ -119,7 +119,7 @@ Maven Plugin dla Checkstyle pozwala na integrację weryfikacji stylu kodu z proc
 </plugin>
 ```
 > [!NOTE]
-> Wersja zastosowana poniżej wspiera `JDK 21`.
+> Wersja zastosowana powyżej wspiera `JDK 21`.
 
 > [!NOTE]
 > Checkstyle jest pobierany z url: `https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/checkstyle.xml`
@@ -139,7 +139,7 @@ Możesz również używać lokalnego pliku konfiguracyjnego Checkstyle z repozyt
 ```
 
 > [!IMPORTANT]
-> Pobrany plik `checkstyle.xml` przechowuj w root katalogu projektu.
+> Pobrany plik `checkstyle.xml` przechowuj w root katalogu projektu lub dostosuj lokalizację w `configLocation`.
 
 ### 4.1.1 Wyłączanie wybranych reguł lokalnie (np. komentarze, System.out)
 
@@ -245,7 +245,6 @@ wykrywania i naprawy błędów.
 
 GitHub Actions pozwala na automatyzację workflow bezpośrednio w repozytorium GitHub. Skonfigurowane akcje są uruchamiane
 w odpowiedzi na zdarzenia, takie jak push lub pull request.
-Po 
 
 #### Jak działa GitHub Actions:
 
