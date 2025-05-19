@@ -103,7 +103,9 @@ Maven Plugin dla Checkstyle pozwala na integrację weryfikacji stylu kodu z proc
         </dependency>
     </dependencies>
     <configuration>
-        <configLocation>https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/checkstyle.xml</configLocation>
+        <configLocation>
+            https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/check/checkstyle.xml
+        </configLocation>
         <consoleOutput>true</consoleOutput>
         <failOnViolation>true</failOnViolation>
         <includeTestSourceDirectory>true</includeTestSourceDirectory>
@@ -122,14 +124,14 @@ Maven Plugin dla Checkstyle pozwala na integrację weryfikacji stylu kodu z proc
 > Wersja zastosowana powyżej wspiera `JDK 21`.
 
 > [!NOTE]
-> Checkstyle jest pobierany z url: `https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/checkstyle.xml`
+> Checkstyle jest pobierany z url: `https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/check/checkstyle.xml`
 
 #### Uruchamianie Checkstyle z Maven:
 
 - **Podczas budowania**: `mvn clean verify`
 - **Niezależnie**: `mvn checkstyle:check`
 
-Możesz również używać lokalnego pliku konfiguracyjnego Checkstyle z repozytorium:
+Możesz również pobrać i używać lokalnego pliku konfiguracyjnego Checkstyle wskazując jego lokalizację:
 
 ```xml
 
@@ -219,7 +221,7 @@ Integracja Checkstyle z IntelliJ IDEA pozwala na natychmiastowe wykrywanie narus
 2. Dodaj konfigurację Checkstyle:
     - Kliknij `+` w sekcji "Configuration File"
     - Wybierz "Local File" aby użyć pliku z projektu lub "URL" aby użyć pliku z repozytorium
-    - Dla URL: wpisz `https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/checkstyle.xml`
+    - Dla URL: wpisz `https://raw.githubusercontent.com/metelskiwiktor/ci-check/main/check/checkstyle.xml`
     - Nadaj opis
     - Kliknij `Next` a następnie `Finish`
 3. Zaznacz swoją konfigurację jako aktywną
