@@ -109,10 +109,11 @@ Maven Plugin dla Checkstyle pozwala na integrację weryfikacji stylu kodu z proc
         <consoleOutput>true</consoleOutput>
         <failOnViolation>true</failOnViolation>
         <includeTestSourceDirectory>true</includeTestSourceDirectory>
+        <skip>false</skip>
     </configuration>
     <executions>
         <execution>
-            <phase>validate</phase>
+            <phase>verify</phase>
             <goals>
                 <goal>check</goal>
             </goals>
@@ -120,6 +121,7 @@ Maven Plugin dla Checkstyle pozwala na integrację weryfikacji stylu kodu z proc
     </executions>
 </plugin>
 ```
+
 > [!NOTE]
 > Wersja zastosowana powyżej wspiera `JDK 21`.
 
@@ -143,13 +145,15 @@ Możesz również pobrać i używać lokalnego pliku konfiguracyjnego Checkstyle
 > [!IMPORTANT]
 > Pobrany plik `checkstyle.xml` przechowuj w root katalogu projektu lub dostosuj lokalizację w `configLocation`.
 
-### 4.1.1 Wyłączanie wybranych reguł lokalnie (np. komentarze, System.out)
+### 4.1.1 Wyłączanie wybranych reguł lokalnie
 
-Jeśli chcesz **lokalnie wyłączyć wybrane reguły** (np. `//` komentarze lub `System.out`), możesz to zrobić **bez jego modyfikowania**, tworząc plik `suppressions.xml`.
+Jeśli chcesz **lokalnie wyłączyć wybrane reguły** (np. `//` komentarze lub `System.out`), możesz to zrobić **bez jego
+modyfikowania**, tworząc plik `suppressions.xml`.
 
 #### Krok 1: Zaktualizuj `pom.xml`
 
 ```xml
+
 <plugin>
     <groupId>org.apache.maven.plugins</groupId>
     <artifactId>maven-checkstyle-plugin</artifactId>
@@ -167,6 +171,7 @@ Jeśli chcesz **lokalnie wyłączyć wybrane reguły** (np. `//` komentarze lub 
         <consoleOutput>true</consoleOutput>
         <failOnViolation>true</failOnViolation>
         <includeTestSourceDirectory>true</includeTestSourceDirectory>
+        <skip>false</skip>
     </configuration>
 </plugin>
 ````
@@ -179,12 +184,12 @@ Jeśli chcesz **lokalnie wyłączyć wybrane reguły** (np. `//` komentarze lub 
 ```xml
 <?xml version="1.0"?>
 <!DOCTYPE suppressions PUBLIC
-    "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
-    "https://checkstyle.org/dtds/suppressions_1_2.dtd">
+        "-//Checkstyle//DTD SuppressionFilter Configuration 1.2//EN"
+        "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 <suppressions>
     <!-- Wyłącza zakaz komentarzy // -->
     <suppress checks="RegexpSinglelineJava" id="SingleLineComments"/>
-    
+
     <!-- Wyłącza zakaz System.out -->
     <suppress checks="RegexpSinglelineJava" id="SystemOutUsage"/>
 
@@ -195,6 +200,18 @@ Jeśli chcesz **lokalnie wyłączyć wybrane reguły** (np. `//` komentarze lub 
 
 > [!IMPORTANT]
 > Jeśli dana reguła ma przypisane `id` w `checkstyle.xml`, to w `suppressions.xml` należy je wskazać w atrybucie `id`.
+
+### 4.1.2 Wyłączenie Checkstyle
+
+Jeśli chcesz tymczasowo wyłączyć cały Checkstyle, możesz to zrobić zmieniając wartość `skip` na false w konfiguracji
+pluginu:
+
+```xml
+
+<configuration>
+    <skip>true</skip>
+</configuration>
+```
 
 ### 4.2 Integracja z IntelliJ IDEA
 
@@ -236,7 +253,7 @@ wykrywania i naprawy błędów.
 
 ### Popularne narzędzia CI:
 
-- **GitHub Actions**: zintegrowane z GitHub, pozwala na definiowanie workflow w YAML
+- **Github Actions**: zintegrowane z Github, pozwala na definiowanie workflow w YAML
 - **Jenkins**: samodzielnie hostowane, wysoce konfigurowalne narzędzie CI/CD
 - **Travis CI**: usługa CI w chmurze, łatwa w konfiguracji
 - **CircleCI**: rozwiązanie CI/CD z zaawansowanymi funkcjami i dobrą integracją
@@ -300,10 +317,13 @@ jobs:
     3. Uruchamia `mvn verify`, który wykonuje kompilację, testy oraz analizy kodu (w tym Checkstyle)
 
 > [!NOTE]
-> Workflow jest uruchamiany w kontenerowym środowisku GitHub Actions.
+> Workflow jest uruchamiany w kontenerowym środowisku Github Actions.
 
 > [!IMPORTANT]
-> Pamiętaj by zapisać plik `.github/workflows/ci.yml` w swoim repozytorium.
+> `CI` uruchomi się przy push lub pull request do gałęzi `main`, 
+
+> [!IMPORTANT]
+> Pamiętaj, by zapisać plik `.github/workflows/ci.yml` w swoim repozytorium.
 
 Ta konfiguracja zapewnia, że każda zmiana w kodzie przechodzi przez weryfikację jakości przed scaleniem z główną
 gałęzią, utrzymując wysokie standardy kodu w projekcie.

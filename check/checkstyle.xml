@@ -143,8 +143,15 @@
 
         <!-- Method Name -->
         <module name="MethodName">
+            <property name="id" value="MethodName"/>
             <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern" value="Method name ''{0}'' must match pattern ''{1}''."/>
+        </module>
+
+        <!-- Suppress Method Name in Tests -->
+        <module name="SuppressionXpathSingleFilter">
+            <property name="id" value="MethodName"/>
+            <property name="files" value=".*[\\/]src[\\/]test[\\/]java[\\/].*"/>
         </module>
 
         <!-- Local Variable Name -->

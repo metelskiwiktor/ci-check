@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 class CheckstyleRulesTest {
     @ParameterizedTest(name = "Violation for {0}: {2}")
     @MethodSource("provideFailRules")
-    void shouldDetectOnlyOneKindOfViolation(String filePath, String checkNameFragment,
+    void shouldDetectOnlyOneKindOfViolation_whenSingleRuleFails (String filePath, String checkNameFragment,
                                             String messageFragment) throws Exception {
         List<AuditEvent> events = CheckstyleTestRunner.runCheckstyle(filePath);
         CheckstyleTestAssertions.assertSingleViolationType(events, filePath,

@@ -65,6 +65,7 @@
                     </dependency>
                 </dependencies>
                 <configuration>
+                    <skip>false</skip>
                     <configLocation>check/checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failOnViolation>true</failOnViolation>
@@ -73,7 +74,7 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
+                        <phase>verify</phase>
                         <goals>
                             <goal>check</goal>
                         </goals>
