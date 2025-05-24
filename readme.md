@@ -72,16 +72,17 @@ W tym projekcie używamy niestandardowej konfiguracji Checkstyle wzorowanej na G
 | **Importy i zmienne** | `UnusedImports`, `UnusedLocalVariable`   | Zakaz nieużywanych importów i zmiennych                            | Eliminacja martwego kodu, zmniejszenie złożoności                                    |
 | **Konwencje nazw**    | `TypeName`                               | UpperCamelCase dla klas/interfejsów                                | Zgodność z konwencją Java                                                            |
 |                       | `MethodName`, `LocalVariableName`        | lowerCamelCase dla metod i zmiennych lokalnych                     | Spójność i łatwość identyfikacji elementów kodu                                      |
-|                       | `ConstantName`                           | SCREAMING\_SNAKE\_CASE dla stałych                                 | Podkreślenie niezmienności wartości                                                  |
+|                       | `ConstantName`                           | SCREAMING_SNAKE_CASE dla stałych                                   | Podkreślenie niezmienności wartości                                                  |
 | **Struktura kodu**    | `NeedBraces`                             | Wymagane klamry `{}` dla wszystkich bloków sterujących             | Zapobieganie błędom logicznym w kodzie jednoliniowym                                 |
 |                       | `EmptyLineSeparator`                     | Wymuszenie pustych linii między elementami (np. metodami, klasami) | Lepsza separacja logiczna kodu                                                       |
 | **Zakazane elementy** | `RegexpSinglelineJava` (System.out/err)  | Zakaz `System.out` i `System.err`                                  | Wymuszenie użycia loggerów – dobra praktyka produkcyjna                              |
 |                       | `RegexpSinglelineJava` (komentarze `//`) | Zakaz komentarzy jednoliniowych poza testami                       | Wymuszenie stosowania Javadoc – ujednolicenie dokumentacji, zapobiega komentarzom AI |
 | **Testy**             | `SuppressionXpathSingleFilter`           | Dopuszczenie komentarzy `//` tylko w testach                       | Umożliwia nadawanie komentarzy `//given //when //then` w testach                     |
+|                       | `MethodName`                             | Dopuszczenie dowolnego patternu nazwy metody tylko w testach       | Umożliwia nadawanie różnych nazw metod w testach, wliczając `"_"`                    |
 
 ---
 
-## 4. Instrukcja wdrożenia
+## 4. Instrukcja wdrożenia Checkstyle
 
 ### 4.1 Konfiguracja z Maven
 
@@ -213,7 +214,7 @@ pluginu:
 </configuration>
 ```
 
-### 4.2 Integracja z IntelliJ IDEA
+### 4.2 Integracja Checkstyle z IntelliJ IDEA
 
 Integracja Checkstyle z IntelliJ IDEA pozwala na natychmiastowe wykrywanie naruszeń podczas kodowania.
 
@@ -262,7 +263,7 @@ wykrywania i naprawy błędów.
 
 ### 5.1 GitHub Actions
 
-GitHub Actions pozwala na automatyzację workflow bezpośrednio w repozytorium GitHub. Skonfigurowane akcje są uruchamiane
+Github Actions pozwala na automatyzację workflow bezpośrednio w repozytorium Github. Skonfigurowane akcje są uruchamiane
 w odpowiedzi na zdarzenia, takie jak push lub pull request.
 
 #### Jak działa GitHub Actions:
@@ -279,9 +280,9 @@ name: Java CI-check
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "*" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "*" ]
 
 jobs:
   build:
@@ -308,7 +309,7 @@ jobs:
 
 #### Omówienie konfiguracji:
 
-- **Wyzwalacze (triggers)**: Workflow jest uruchamiany przy każdym push lub pull request do gałęzi `main`
+- **Wyzwalacze (triggers)**: Workflow jest uruchamiany przy każdym push lub pull request do każdej gałęzi (`*`)
 - **Środowisko**: Uruchamiane na najnowszej wersji Ubuntu
 - **Matryca**: Testuje kod na Java 21
 - **Kroki**:
@@ -317,10 +318,7 @@ jobs:
     3. Uruchamia `mvn verify`, który wykonuje kompilację, testy oraz analizy kodu (w tym Checkstyle)
 
 > [!NOTE]
-> Workflow jest uruchamiany w kontenerowym środowisku Github Actions.
-
-> [!IMPORTANT]
-> `CI` uruchomi się przy push lub pull request do gałęzi `main`, 
+> Workflow jest uruchamiany w kontenerowym środowisku Github Actions. Uruchomi się przy push lub pull request.
 
 > [!IMPORTANT]
 > Pamiętaj, by zapisać plik `.github/workflows/ci.yml` w swoim repozytorium.

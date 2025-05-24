@@ -3,19 +3,18 @@
 Log zmian w projekcie — każda sekcja odpowiada dacie `[YYYY-mm-dd]` wprowadzenia zmian do głównej gałęzi `main`.
 
 ---
+## 2025-05-24
+- Zaktualizowano `ci.yml` aby workflow uruchamiał się przy każdym branchu, nie tylko `main`.
+- Drobne poprawki w `README.md`.
 
 ## 2025-05-22
 
-### Zmienione
-
 - Zmieniono uruchamianie pluginu Checkstyle z fazy `validate` na `verify`.
-- Dodano możliwość tymczasowego wyłączenia Checkstyle za pomocą flagi `<skip>true</skip>` w konfiguracji pluginu Maven.
+- Dodano instrukcję tymczasowego wyłączenia Checkstyle za pomocą flagi `<skip>true</skip>` w konfiguracji pluginu Maven.
 - Wyłączono regułę `MethodName` w testach jednostkowych (`src/test/java`), aby umożliwić stosowanie alternatywnych
   konwencji nazewnictwa (np. z użyciem `_`).
 
 ## 2025-05-19
-
-### Zmienione
 
 - Zaktualizowano reguły Checkstyle:
     - `Indentation.lineWrappingIndentation` zmieniono z `8` na `4`.
